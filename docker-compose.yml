@@ -13,7 +13,7 @@ services:
     build:
       context: .
       args:
-        - cachet_ver=master
+        - cachet_ver=v2.3.13
     ports:
       - 80:8000
     links:
@@ -32,3 +32,9 @@ services:
     depends_on:
       - postgres
     restart: on-failure
+  monitor:
+    build:
+      context: ./cachet-monitor
+    volumes: 
+      - ./cachet-monitor/config.json:/etc/cachet-monitor.config.json
+      
